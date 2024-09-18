@@ -13,9 +13,9 @@ app.secret_key = 'your_secret_key'
 
 # Establish a connection to the MySQL database
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="sotnas852",
+    host=os.getenv('DB_ID'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
     database="todo_app"
 )
 
@@ -25,8 +25,8 @@ oauth = OAuth(app)
 # Configure Google OAuth provider details
 google = oauth.register(
     name='google',
-    client_id='CLIENT_ID',
-    client_secret='CLIENT_SECRET',
+    client_id = os.getenv('CLIENT_ID')
+    client_secret = os.getenv('CLIENT_SECRET')
     access_token_url='https://oauth2.googleapis.com/token',
     authorize_url='https://accounts.google.com/o/oauth2/auth',
     authorize_params=None,
