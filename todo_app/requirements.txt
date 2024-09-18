@@ -1,0 +1,5 @@
+Flask==2.1.2
+mysql-connector-python==8.0.29
+bcrypt==3.2.2
+authlib==1.0.0
+Flask-Mail==0.9.1
