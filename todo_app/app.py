@@ -224,4 +224,6 @@ def logout():
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get the port from the environment, with a default fallback to 10000
+    port = int(os.getenv('PORT', 10000))
+    app.run(host='0.0.0.0', port=port, debug=True)
