@@ -38,11 +38,20 @@ google = oauth.register(
 # Home route with login and register options
 @app.route('/')
 def home():
+    # Check if the user is already logged in
+    if 'user_id' in session:
+        flash("You are already logged in.", "info")
+        return redirect(url_for('todo'))
     return render_template('login.html')
 
 # Register route for creating a new user account
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    # Check if the user is already logged in
+    if 'user_id' in session:
+        flash("You are already logged in.", "info")
+        return redirect(url_for('todo'))
+    
     if request.method == 'POST':
         # Get email and password from the registration form
         email = request.form['email']
@@ -75,6 +84,11 @@ def register():
 # Login route for user authentication
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Check if the user is already logged in
+    if 'user_id' in session:
+        flash("You are already logged in.", "info")
+        return redirect(url_for('todo'))
+    
     if request.method == 'POST':
         # Get the email and password from the login form
         email = request.form['email']
