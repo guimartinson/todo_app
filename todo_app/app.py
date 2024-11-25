@@ -7,9 +7,13 @@ import os
 import secrets
 from flask_mail import Mail, Message
 from datetime import datetime
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Establish a connection to the MySQL database
 db = mysql.connector.connect(
@@ -223,7 +227,6 @@ def logout():
     return redirect(url_for('home'))
 
 # Run the app
-if __name__ == '__main__':
-    # Get the port from the environment, with a default fallback to 10000
-    port = int(os.getenv('PORT', 10000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+if __name__ == '__main__':  
+    app.run(debug=True)
+
